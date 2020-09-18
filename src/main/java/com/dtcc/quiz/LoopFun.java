@@ -1,5 +1,7 @@
 package com.dtcc.quiz;
 
+import java.sql.SQLOutput;
+
 public class LoopFun {
     /**
      * Given a number, return the factorial of that number.
@@ -8,8 +10,12 @@ public class LoopFun {
      * @return the factorial of the number
      */
     public Integer factorial(Integer number){
-        return null;
-}
+        int factorial = number;
+        for(int i = number-1; i > 0; i--){
+            factorial = i * factorial;
+        }
+        return factorial;
+    }
 
     /**
      * Given a phrase, get the acronym of that phrase. Acronym is the combination of
@@ -19,7 +25,15 @@ public class LoopFun {
      * @return Upper case string of the first letter of each word
      */
     public String acronym(String phrase) {
-       return null;
+        String acronym = "";
+        //phrase.toUpperCase();
+        String[] phraseArray = phrase.split(" ");
+        char[] acronymArray = new char[phraseArray.length];
+        for(int i = 0; i< phraseArray.length; i++ ) {
+            acronymArray[i] = phraseArray[i].charAt(0);
+            acronym += acronymArray[i];
+        }
+        return acronym.toUpperCase();
     }
 
     /**
@@ -35,8 +49,34 @@ public class LoopFun {
      * @return the encrypted string by shifting each character by three character
      */
     public String encrypt(String word) {
-        return null;
+        String encryption = "";
+
+        int originalLetter;
+        char encryptedLetter = 0;
+        String encryptedWord = "";
+
+        for(int i = 0; i < word.length(); i++){
+            int shift = 3;
+            originalLetter = (int)word.charAt(i);
+            if(originalLetter > 64 && originalLetter < 90){
+                if(originalLetter >= (90-shift)){
+                    encryptedLetter = (char)(65 + (shift-(90 - originalLetter)));
+                }
+                else{
+                    encryptedLetter = (char)(originalLetter + shift);
+                }
+            }
+            if(originalLetter > 96 && originalLetter < 123){
+                if(originalLetter >= (123-shift)){
+                    encryptedLetter = (char)(97 + (shift-(123- originalLetter)));
+                }
+                else{
+                    encryptedLetter = (char)(originalLetter + shift);
+                }
+            }
+            encryptedWord += encryptedLetter;
+        }
+        return encryptedWord;
     }
 
 }
-
